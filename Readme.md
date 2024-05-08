@@ -4,6 +4,10 @@
 git clone https://github.com/ufodriver007/nagios_bot.git
 ```
 2. Создаём файл с переменными окружения `.env` Заполняем этот файл по примеру файла `.env.example`
+    BOT_TOKEN=токен полученный от BotFather
+    USERNAME=nagios_username
+    PASSWORD=nagios_password
+    TIMEOUT=время в секундах
 3. Создаём виртуальное окружение Python. Версия Python >= 3.11
 ```angular2html
 python3.11 -m venv venv
@@ -26,7 +30,7 @@ cd /etc/systemd/system/
 ```angular2html
 sudo nano nagios_bot.service
 ```
-Пример сервиса
+Пример юнита
 ```angular2html
 [Unit]
 Description=nagios_bot
@@ -43,10 +47,11 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 ```
-Перезапуск службы
+Делаем софт-релоад
 ```angular2html
 sudo systemctl daemon-reload
 ```
+
 запускаем только что созданный юнит
 ```angular2html
 sudo systemctl enable nagios_bot
