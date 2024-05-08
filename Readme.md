@@ -7,11 +7,13 @@ git clone https://github.com/ufodriver007/nagios_bot.git
     BOT_TOKEN=токен полученный от BotFather
     USERNAME=nagios_username
     PASSWORD=nagios_password
-    TIMEOUT=время в секундах
+    TIMEOUT=максимальное время (в секундах) обработки запроса
+
 3. Создаём виртуальное окружение Python. Версия Python >= 3.11
 ```angular2html
 python3.11 -m venv venv
 ```
+
 4. Активируем виртуальное окружение из свежесозданной директории `venv`
 ```angular2html
 source venv/bin/activate
@@ -41,7 +43,7 @@ After=network.target
 Type=simple
 User=mike
 WorkingDirectory=/home/mike/nagios_bot
-ExecStart=/home/mike/nagios_bot/venv/bin/python3 /home/mike/nagios_bot/bot.py
+ExecStart=/home/mike/nagios_bot/venv/bin/python3.11 /home/mike/nagios_bot/bot.py
 Restart=always
 
 [Install]
@@ -61,6 +63,14 @@ sudo systemctl start nagios_bot
 #### Соответственно остановка/перезапуск бота происходит так
 ```angular2html
 sudo systemctl stop nagios_bot
+```
+```angular2html
+sudo systemctl restart nagios_bot
+```
+
+#### Обновление бота
+```angular2html
+git pull
 ```
 ```angular2html
 sudo systemctl restart nagios_bot
