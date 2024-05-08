@@ -32,8 +32,8 @@ async def get_onu_info_handler(message: Message) -> None:
     """
     Handler will get ONU info
     """
-    info = parser.request(message.text)
     logging.info(f'Пользователь {message.from_user.id} запросил информацию об абоненте {message.text}')
+    info = await parser.request(message.text)
     await message.answer(info)
 
 
