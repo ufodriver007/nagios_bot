@@ -1,6 +1,10 @@
+import logging
 import requests
 from bs4 import BeautifulSoup
 import os
+
+
+logging.basicConfig(level=logging.INFO, filename='logfile.log')
 
 
 def request(login: str):
@@ -10,4 +14,5 @@ def request(login: str):
         soup.select_one('title').decompose()
         return soup.get_text()
     except requests.exceptions.Timeout:
+        logging.warning(f'Таймаут ожидания. Запрошенный логин {login}')
         return 'Неверный логин'

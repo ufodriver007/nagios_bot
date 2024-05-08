@@ -1,4 +1,3 @@
-import sys
 import os
 import asyncio
 import logging
@@ -34,6 +33,7 @@ async def get_onu_info_handler(message: Message) -> None:
     Handler will get ONU info
     """
     info = parser.request(message.text)
+    logging.info(f'Пользователь {message.from_user.id} запросил информацию об абоненте {message.text}')
     await message.answer(info)
 
 
@@ -45,5 +45,5 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+    logging.basicConfig(level=logging.INFO, filename='logfile.log')
     asyncio.run(main())
