@@ -19,7 +19,7 @@ python3.11 -m venv venv
 source venv/bin/activate
 ```
 
-5. Устанавливаем зависимости в виртуальное окружение
+5. Устанавливаем зависимости в виртуальное окружение из файла
 ```angular2html
 pip install -r requirements.txt
 ```
