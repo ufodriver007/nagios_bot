@@ -1,16 +1,16 @@
 import logging
 import asyncio
 import aiohttp
-import requests
 from bs4 import BeautifulSoup
 import os
+import datetime
 
 
 logging.basicConfig(level=logging.INFO, filename='logfile.log')
 
 
-async def request(login: str):
-    async def request_url(url):
+async def request(login: str) -> str:
+    async def request_url(url) -> str | None:
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(url, timeout=int(os.getenv("TIMEOUT"))) as resp:
@@ -25,8 +25,8 @@ async def request(login: str):
             soup.select_one('title').decompose()
             return soup.get_text()
         else:
-            logging.warning(f'Таймаут ожидания. Запрошенный логин {login}')
+            logging.warning(f'{datetime.datetime.now()}|Таймаут ожидания. Запрошенный логин {login}')
             return 'Неверный логин'
     except Exception as e:
-        logging.warning(f'Ошибка при запросе к nagios: {e}')
+        logging.error(f'{datetime.datetime.now()}|Ошибка при запросе к nagios: {e}')
         return 'Произошла ошибка'

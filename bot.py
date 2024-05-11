@@ -8,6 +8,7 @@ from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
 from aiogram.types import Message
 import parser
+import datetime
 
 
 load_dotenv()
@@ -32,7 +33,7 @@ async def get_onu_info_handler(message: Message) -> None:
     """
     Handler will get ONU info
     """
-    logging.info(f'Пользователь {message.from_user.id} запросил информацию об абоненте {message.text}')
+    logging.info(f'{datetime.datetime.now()}|Пользователь {message.from_user.id} запросил информацию об абоненте {message.text}')
     info = await parser.request(message.text)
     await message.answer(info)
 
